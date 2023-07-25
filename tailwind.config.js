@@ -1,4 +1,9 @@
 /** @type {import('tailwindcss').Config} */
+
+
+const colors = require("./src/config/colors")
+const plugin = require("tailwindcss/plugin")
+
 module.exports = {
   content: [
     './src/pages/**/*.{js,ts,jsx,tsx,mdx}',
@@ -12,7 +17,42 @@ module.exports = {
         'gradient-conic':
           'conic-gradient(from 180deg at 50% 50%, var(--tw-gradient-stops))',
       },
+      colors: colors,
+      width : {
+        'desktop' : '1440px',
+        'main': '1110px',
+      },
+      maxWidth : {
+        'desktop' : '1440px',
+        'main': '1110px',
+      }
     },
   },
-  plugins: [],
+  plugins: [
+    plugin(function ({ addUtilities, addComponents, theme }) {
+        addComponents({
+          '.heading-lg' : {
+            fontSize: "56px",
+            fontWeight: "700",
+            lineHeight: "normal",
+          },
+          '.heading-md' : {
+            fontSize: "48px",
+            fontWeight: "700",
+            lineHeight: "normal",
+          },
+          '.heading-sm' : {
+            fontSize: "32px",
+            fontWeight: "700",
+            lineHeight: "normal",
+          },
+          '.heading-xs' : {
+            fontSize: "26px",
+            fontWeight: "700",
+            lineHeight: "normal",
+            
+          }
+        })
+    })
+  ],
 }
